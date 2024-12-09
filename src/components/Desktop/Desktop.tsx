@@ -10,6 +10,7 @@ import LinkedInWindow from "../Windows/LinkedInWindow";
 import ContactWindow from "../Windows/ContactWindow";
 import ResumeWindow from "../Windows/ResumeWindow";
 import EducationWindow from "../Windows/EducationWindow";
+import { ClockWidget, WeatherWidget, CalendarWidget } from "../Widgets/SystemWidgets";
 
 const Desktop = () => {
   const [openWindows, setOpenWindows] = useState({
@@ -39,16 +40,25 @@ const Desktop = () => {
             'url("https://preview.redd.it/modified-the-m3-mac-wallpaper-and-thought-it-looked-good-v0-powq8jb5j5bc1.jpeg?auto=webp&s=66231a10e81f3061e1cd6f1807238fdfcd6569a3")',
         }}
       />
-      
+
       <div className="relative h-full flex flex-col">
         <MenuBar />
         <div className="flex-1 relative">
+          <div className="absolute top-4 right-4 z-10">
+            <div className="mt-2">
+              <WeatherWidget />
+            </div>
+            <div className="mt-2 flex justify-end">
+              <CalendarWidget />
+            </div>
+          </div>
+
           <DesktopIcons
             onIconClick={(window) =>
               toggleWindow(window as keyof typeof openWindows)
             }
           />
-          
+
           <GithubWindow
             isOpen={openWindows.github}
             onClose={() => toggleWindow("github")}
@@ -82,7 +92,7 @@ const Desktop = () => {
             onClose={() => toggleWindow("education")}
           />
         </div>
-        
+
         <Dock
           onItemClick={(window) =>
             toggleWindow(window as keyof typeof openWindows)
