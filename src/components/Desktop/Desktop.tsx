@@ -1,0 +1,86 @@
+import React, { useState } from "react";
+import Dock from "../Dock/Dock";
+import MenuBar from "../MenuBar/MenuBar";
+import DesktopIcons from "../DesktopIcons/DesktopIcons";
+import GithubWindow from "../Windows/GithubWindow";
+import SkillsWindow from "../Windows/SkillsWindow";
+import ExperienceWindow from "../Windows/ExperienceWindow";
+import TechStackWindow from "../Windows/TechStackWindow";
+import LinkedInWindow from "../Windows/LinkedInWindow";
+import ContactWindow from "../Windows/ContactWindow";
+import ResumeWindow from "../Windows/ResumeWindow";
+
+const Desktop = () => {
+  const [openWindows, setOpenWindows] = useState({
+    github: false,
+    skills: false,
+    experience: false,
+    techStack: false,
+    linkedin: false,
+    contact: false,
+    resume: false,
+  });
+
+  const toggleWindow = (window: keyof typeof openWindows) => {
+    setOpenWindows((prev) => ({
+      ...prev,
+      [window]: !prev[window],
+    }));
+  };
+
+  return (
+    <div
+      className="relative h-screen bg-cover bg-center bg-black"
+      style={{
+        backgroundImage:
+          'url("/images/wallpaper.png")',
+      }}
+    >
+       <MenuBar />
+      <DesktopIcons
+        onIconClick={(window) =>
+          toggleWindow(window as keyof typeof openWindows)
+        }
+      /> 
+      
+      <Dock
+        onItemClick={(window) =>
+          toggleWindow(window as keyof typeof openWindows)
+        }
+      />
+
+      <GithubWindow
+        isOpen={openWindows.github}
+        onClose={() => toggleWindow("github")}
+      />
+      <SkillsWindow
+        isOpen={openWindows.skills}
+        onClose={() => toggleWindow("skills")}
+      />
+      <ExperienceWindow
+        isOpen={openWindows.experience}
+        onClose={() => toggleWindow("experience")}
+      />
+      <TechStackWindow
+        isOpen={openWindows.techStack}
+        onClose={() => toggleWindow("techStack")}
+      />
+      <LinkedInWindow
+        isOpen={openWindows.linkedin}
+        onClose={() => toggleWindow("linkedin")}
+      />
+      <ContactWindow
+        isOpen={openWindows.contact}
+        onClose={() => toggleWindow("contact")}
+      />
+      <ResumeWindow
+        isOpen={openWindows.resume}
+        onClose={() => toggleWindow("resume")}
+      />
+
+      {/* <h1 className="text-white">hi</h1> */}
+    </div>
+  );
+};
+
+export default Desktop;
