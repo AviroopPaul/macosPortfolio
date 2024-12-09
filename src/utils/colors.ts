@@ -14,6 +14,7 @@ export const iconColors = {
     terminal: '#2D3436',
     experience: '#6C5CE7',
     techStack: '#A8E6CF',
-    resume: '#FFFFFF'
+    resume: '#FFFFFF',
+    education: '#FF7675'
   }
 } as const;

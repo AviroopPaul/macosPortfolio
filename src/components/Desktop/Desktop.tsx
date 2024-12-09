@@ -9,6 +9,7 @@ import TechStackWindow from "../Windows/TechStackWindow";
 import LinkedInWindow from "../Windows/LinkedInWindow";
 import ContactWindow from "../Windows/ContactWindow";
 import ResumeWindow from "../Windows/ResumeWindow";
+import EducationWindow from "../Windows/EducationWindow";
 
 const Desktop = () => {
   const [openWindows, setOpenWindows] = useState({
@@ -19,6 +20,7 @@ const Desktop = () => {
     linkedin: false,
     contact: false,
     resume: false,
+    education: false,
   });
 
   const toggleWindow = (window: keyof typeof openWindows) => {
@@ -74,6 +76,10 @@ const Desktop = () => {
           <ResumeWindow
             isOpen={openWindows.resume}
             onClose={() => toggleWindow("resume")}
+          />
+          <EducationWindow
+            isOpen={openWindows.education}
+            onClose={() => toggleWindow("education")}
           />
         </div>
         

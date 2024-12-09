@@ -112,11 +112,11 @@ const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children, dockI
         '--end-x': '0px',
         '--end-y': '0px',
       } as React.CSSProperties}
-      className={`fixed top-12 left-1/2 -translate-x-1/2 w-[80vw] h-[80vh] bg-white rounded-lg shadow-2xl 
-                border border-gray-200 overflow-hidden z-40 ${!isMaximized ? 'resize' : ''} 
+      className={`fixed top-12 left-1/2 -translate-x-1/2 w-[80vw] h-[80vh] bg-gray-900 rounded-lg shadow-2xl 
+                border border-gray-700 overflow-hidden z-40 ${!isMaximized ? 'resize' : ''} 
                 ${isMinimized ? 'minimize-animation' : ''}`}
     >
-      <div className="bg-gray-100 px-4 py-2 flex items-center justify-between border-b border-gray-200">
+      <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
         <div className="flex items-center space-x-2">
           <button 
             onClick={onClose}
@@ -131,9 +131,9 @@ const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children, dockI
             className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600"
           />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 text-sm font-medium text-gray-700">{title}</span>
+        <span className="absolute left-1/2 -translate-x-1/2 text-sm font-medium text-gray-300">{title}</span>
       </div>
-      <div className="h-[calc(100%-2.5rem)] overflow-auto relative">
+      <div className="h-[calc(100%-2.5rem)] overflow-auto relative text-gray-300">
         {children}
         <div 
           className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
