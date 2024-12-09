@@ -30,7 +30,7 @@ const LinkedInWindow: React.FC<LinkedInWindowProps> = ({ isOpen, onClose }) => {
       <div className="relative h-full">
         {/* LinkedIn Profile Screenshot */}
         <img 
-          src="/images/linkedin-profile.png" // Add your LinkedIn profile screenshot here
+          src="https://res.cloudinary.com/dami7wcek/image/upload/v1733766700/linkedin-profile_t2ypna.png" // Add your LinkedIn profile screenshot here
           alt="LinkedIn Profile Preview"
           className="w-full h-full object-cover"
         />
