@@ -42,11 +42,6 @@ const DesktopIcons: React.FC<DesktopIconsProps> = ({ onIconClick }) => {
         onClick={() => onIconClick('techStack')}
       />
       <DesktopIcon 
-        icon={<FaChrome size={48} />} 
-        label="Portfolio.app" 
-        color={iconColors.desktop.portfolio}
-      />
-      <DesktopIcon 
         icon={<FaFileAlt size={48} />} 
         label="Resume.doc" 
         color={iconColors.desktop.resume}

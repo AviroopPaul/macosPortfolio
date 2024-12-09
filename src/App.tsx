@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Desktop from './components/Desktop/Desktop';
+import BootScreen from './components/BootScreen/BootScreen';
 
 function App() {
-  return <Desktop />;
+  const [isBootComplete, setIsBootComplete] = useState(false);
+
+  return isBootComplete ? <Desktop /> : <BootScreen onBootComplete={() => setIsBootComplete(true)} />;
 }
 
 export default App;

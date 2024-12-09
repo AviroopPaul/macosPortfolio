@@ -33,7 +33,7 @@ const Desktop = () => {
       className="relative h-screen bg-cover bg-center bg-black"
       style={{
         backgroundImage:
-          'url("/images/wallpaper.png")',
+          'url("https://preview.redd.it/modified-the-m3-mac-wallpaper-and-thought-it-looked-good-v0-powq8jb5j5bc1.jpeg?auto=webp&s=66231a10e81f3061e1cd6f1807238fdfcd6569a3")',
       }}
     >
        <MenuBar />

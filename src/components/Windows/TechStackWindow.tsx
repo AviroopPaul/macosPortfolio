@@ -43,11 +43,6 @@ const techStack = [
     category: 'Database',
     image: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg'
   },
-  {
-    name: 'Redis',
-    category: 'Database',
-    image: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg'
-  }
 ];
 
 const TechStackWindow: React.FC<TechStackWindowProps> = ({ isOpen, onClose }) => {

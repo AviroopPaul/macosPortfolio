@@ -6,13 +6,15 @@ interface WindowProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  dockItemPosition?: { x: number; y: number };
 }
 
-const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children }) => {
+const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children, dockItemPosition }) => {
   const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const windowRef = useRef<HTMLDivElement>(null);
   const [previousStyles, setPreviousStyles] = useState<{ width?: string; height?: string; top?: string; left?: string }>();
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const startResize = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,7 +51,24 @@ const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children }) => 
 
   const handleMinimize = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Add minimize functionality if needed
+    if (windowRef.current && dockItemPosition) {
+      // Calculate the final position relative to the dock item
+      const windowRect = windowRef.current.getBoundingClientRect();
+      const startX = windowRect.left;
+      const startY = windowRect.top;
+      
+      // Set custom properties for the animation
+      windowRef.current.style.setProperty('--start-x', `${startX}px`);
+      windowRef.current.style.setProperty('--start-y', `${startY}px`);
+      windowRef.current.style.setProperty('--end-x', `${dockItemPosition.x}px`);
+      windowRef.current.style.setProperty('--end-y', `${dockItemPosition.y}px`);
+    }
+    
+    setIsMinimized(true);
+    setTimeout(() => {
+      setIsMinimized(false);
+      onClose();
+    }, 500);
   };
 
   const handleMaximize = (e: React.MouseEvent) => {
@@ -87,8 +106,15 @@ const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children }) => 
   return (
     <div 
       ref={windowRef}
+      style={{
+        '--start-x': '0px',
+        '--start-y': '0px',
+        '--end-x': '0px',
+        '--end-y': '0px',
+      } as React.CSSProperties}
       className={`fixed top-12 left-1/2 -translate-x-1/2 w-[80vw] h-[80vh] bg-white rounded-lg shadow-2xl 
-                border border-gray-200 overflow-hidden z-40 ${!isMaximized ? 'resize' : ''}`}
+                border border-gray-200 overflow-hidden z-40 ${!isMaximized ? 'resize' : ''} 
+                ${isMinimized ? 'minimize-animation' : ''}`}
     >
       <div className="bg-gray-100 px-4 py-2 flex items-center justify-between border-b border-gray-200">
         <div className="flex items-center space-x-2">
