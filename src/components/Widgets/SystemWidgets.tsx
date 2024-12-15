@@ -52,7 +52,7 @@ const WeatherWidget = () => {
         setError(null);
         const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
         const response = await fetch(
-          `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Bengaluru&days=5&aqi=no`
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Bengaluru&days=5&aqi=no`
         );
         
         if (!response.ok) {
