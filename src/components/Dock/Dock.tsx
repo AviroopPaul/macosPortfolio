@@ -7,6 +7,7 @@ import {
   FaBook,
   FaBuilding,
   FaImage,
+  FaTerminal,
 } from "react-icons/fa";
 import DockItem from "./DockItem";
 import { iconColors } from "../../utils/colors";
@@ -49,6 +50,13 @@ const Dock: React.FC<DockProps> = ({ onItemClick }) => {
           label="Tech Stack"
           color={iconColors.techStack}
           onClick={() => onItemClick("techStack")}
+        />
+        <DockItem
+          className="dock-item"
+          icon={<FaTerminal size={24} />}
+          label="Terminal"
+          color={iconColors.desktop.terminal}
+          onClick={() => onItemClick("terminal")}
         />
         <div className="w-px h-full bg-white/10 mx-2" />
         <DockItem

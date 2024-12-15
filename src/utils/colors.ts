@@ -11,7 +11,7 @@ export const iconColors = {
     code: '#00B894',
     projects: '#6C5CE7',
     portfolio: '#FF7675',
-    terminal: '#2D3436',
+    terminal: '#2ECC71',
     experience: '#6C5CE7',
     techStack: '#A8E6CF',
     resume: '#FFFFFF',

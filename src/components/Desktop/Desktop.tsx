@@ -10,6 +10,7 @@ import LinkedInWindow from "../Windows/LinkedInWindow";
 import ContactWindow from "../Windows/ContactWindow";
 import ResumeWindow from "../Windows/ResumeWindow";
 import EducationWindow from "../Windows/EducationWindow";
+import TerminalWindow from "../Windows/TerminalWindow";
 import { ClockWidget, WeatherWidget, CalendarWidget } from "../Widgets/SystemWidgets";
 
 const Desktop = () => {
@@ -22,6 +23,7 @@ const Desktop = () => {
     contact: false,
     resume: false,
     education: false,
+    terminal: false,
   });
 
   const toggleWindow = (window: keyof typeof openWindows) => {
@@ -90,6 +92,10 @@ const Desktop = () => {
           <EducationWindow
             isOpen={openWindows.education}
             onClose={() => toggleWindow("education")}
+          />
+          <TerminalWindow
+            isOpen={openWindows.terminal}
+            onClose={() => toggleWindow("terminal")}
           />
         </div>
 

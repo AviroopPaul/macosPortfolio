@@ -1,12 +1,10 @@
 import React from "react";
 import {
   FaCode,
-  FaGithub,
-  FaChrome,
   FaBuilding,
-  FaImage,
   FaFileAlt,
   FaGraduationCap,
+  FaTerminal,
 } from "react-icons/fa";
 import DesktopIcon from "./DesktopIcon";
 import { iconColors } from "../../utils/colors";
@@ -41,6 +39,12 @@ const DesktopIcons: React.FC<DesktopIconsProps> = ({ onIconClick }) => {
         label="Resume.doc"
         color={iconColors.desktop.resume}
         onClick={() => onIconClick("resume")}
+      />
+      <DesktopIcon
+        icon={<FaTerminal size={48} />}
+        label="Terminal"
+        color={iconColors.desktop.terminal}
+        onClick={() => onIconClick("terminal")}
       />
     </div>
   );
