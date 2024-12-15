@@ -11,10 +11,12 @@ import ContactWindow from "../Windows/ContactWindow";
 import ResumeWindow from "../Windows/ResumeWindow";
 import EducationWindow from "../Windows/EducationWindow";
 import TerminalWindow from "../Windows/TerminalWindow";
+import WelcomeWindow from "../Windows/WelcomeWindow";
 import { ClockWidget, WeatherWidget, CalendarWidget } from "../Widgets/SystemWidgets";
 
 const Desktop = () => {
   const [openWindows, setOpenWindows] = useState({
+    welcome: true,
     github: false,
     skills: false,
     experience: false,
@@ -61,6 +63,10 @@ const Desktop = () => {
             }
           />
 
+          <WelcomeWindow
+            isOpen={openWindows.welcome}
+            onClose={() => toggleWindow("welcome")}
+          />
           <GithubWindow
             isOpen={openWindows.github}
             onClose={() => toggleWindow("github")}

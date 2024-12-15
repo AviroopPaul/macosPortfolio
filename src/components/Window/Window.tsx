@@ -7,9 +7,11 @@ interface WindowProps {
   onClose: () => void;
   children: React.ReactNode;
   dockItemPosition?: { x: number; y: number };
+  defaultPosition?: { x: number; y: number };
+  defaultSize?: { width: number; height: number };
 }
 
-const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children, dockItemPosition }) => {
+const Window: React.FC<WindowProps> = ({ title, isOpen, onClose, children, dockItemPosition, defaultPosition, defaultSize }) => {
   const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const windowRef = useRef<HTMLDivElement>(null);
