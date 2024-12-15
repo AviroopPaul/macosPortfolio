@@ -44,14 +44,21 @@ const ClockWidget = () => {
 const WeatherWidget = () => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
+        setError(null);
         const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
         const response = await fetch(
           `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Bengaluru&days=5&aqi=no`
         );
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch weather data');
+        }
+        
         const data = await response.json();
 
         setWeather({
@@ -75,6 +82,7 @@ const WeatherWidget = () => {
         });
       } catch (error) {
         console.error('Error fetching weather:', error);
+        setError('Failed to fetch weather');
       } finally {
         setLoading(false);
       }
@@ -90,6 +98,14 @@ const WeatherWidget = () => {
     return (
       <div className="bg-gradient-to-br from-black via-black/95 to-blue-950/90 backdrop-blur-xl rounded-xl p-4 text-white w-96">
         <div className="text-center">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-gradient-to-br from-black via-black/95 to-blue-950/90 backdrop-blur-xl rounded-xl p-4 text-white w-96">
+        <div className="text-center">{error}</div>
       </div>
     );
   }
