@@ -5,6 +5,7 @@ import {
   FaFileAlt,
   FaGraduationCap,
   FaTerminal,
+  FaEnvelope,
 } from "react-icons/fa";
 import DesktopIcon from "./DesktopIcon";
 import { iconColors } from "../../utils/colors";
@@ -45,6 +46,12 @@ const DesktopIcons: React.FC<DesktopIconsProps> = ({ onIconClick }) => {
         label="Terminal"
         color={iconColors.desktop.terminal}
         onClick={() => onIconClick("terminal")}
+      />
+      <DesktopIcon
+        icon={<FaEnvelope size={48} />}
+        label="Contact"
+        color={iconColors.desktop.contact}
+        onClick={() => onIconClick("contact")}
       />
     </div>
   );

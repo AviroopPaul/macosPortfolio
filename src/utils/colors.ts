@@ -15,6 +15,7 @@ export const iconColors = {
     experience: '#6C5CE7',
     techStack: '#A8E6CF',
     resume: '#FFFFFF',
-    education: '#FF7675'
+    education: '#FF7675',
+    contact: "#FF6B6B"
   }
 } as const;
