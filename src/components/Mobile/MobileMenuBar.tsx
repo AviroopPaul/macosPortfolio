@@ -3,7 +3,11 @@ import { FaWifi } from "react-icons/fa";
 import { BsReception4 } from "react-icons/bs";
 import { IoIosBatteryFull } from "react-icons/io";
 
-const MobileMenuBar: React.FC = () => {
+interface MobileMenuBarProps {
+  isAppOpen?: boolean;
+}
+
+const MobileMenuBar: React.FC<MobileMenuBarProps> = ({ isAppOpen = false }) => {
   const [time, setTime] = React.useState<string>("");
 
   React.useEffect(() => {
@@ -24,9 +28,19 @@ const MobileMenuBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center px-6 py-1 text-white text-base font-medium">
+    <div
+      className={`flex justify-between items-center px-6 py-2 text-white text-base font-medium ${
+        isAppOpen ? "bg-black" : ""
+      }`}
+    >
       <span>{time}</span>
-      <div className="absolute left-1/2 -translate-x-1/2 w-[120px] h-[30px] bg-black rounded-full" />
+      <div className="absolute left-1/2 -translate-x-1/2 w-[120px] h-[30px] bg-black rounded-full overflow-hidden">
+        <div className="absolute left-[35%] top-1/2 -translate-y-1/2 w-[12px] h-[12px] rounded-full bg-gradient-radial from-slate-600/40 via-transparent to-transparent" />
+        <div className="absolute left-[55%] top-1/2 -translate-y-1/2 w-[8px] h-[8px] rounded-full bg-gradient-radial from-slate-600/30 via-transparent to-transparent" />
+
+        <div className="absolute left-[35%] top-1/2 -translate-y-1/2 w-[4px] h-[4px] rounded-full bg-slate-400/20" />
+        <div className="absolute left-[55%] top-1/2 -translate-y-1/2 w-[3px] h-[3px] rounded-full bg-slate-400/20" />
+      </div>
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-1">
           <BsReception4 className="h-5 w-5" />

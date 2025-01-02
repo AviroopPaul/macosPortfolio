@@ -1,14 +1,31 @@
 import React from "react";
-import { FaCode } from "react-icons/fa";
+import {
+  FaCode,
+  FaDesktop,
+  FaServer,
+  FaDatabase,
+  FaMobile,
+} from "react-icons/fa";
 
 const skills = [
   {
     name: "Frontend",
     items: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+    color: "text-blue-400",
+    icon: FaDesktop,
   },
-  { name: "Backend", items: ["Node.js", "Python", "Java", "PostgreSQL"] },
-  { name: "DevOps", items: ["Docker", "AWS", "CI/CD", "Git"] },
-  { name: "Mobile", items: ["React Native", "iOS", "Android"] },
+  {
+    name: "Backend",
+    items: ["Node.js", "Python", "Java", "PostgreSQL", "MongoDB", "MySQL"],
+    color: "text-green-400",
+    icon: FaServer,
+  },
+  {
+    name: "DevOps",
+    items: ["Docker", "Google Cloud", "CI/CD", "Git"],
+    color: "text-purple-400",
+    icon: FaDatabase,
+  },
 ];
 
 const SkillsApp: React.FC = () => {
@@ -18,7 +35,7 @@ const SkillsApp: React.FC = () => {
         {skills.map((category) => (
           <div key={category.name} className="bg-white/10 rounded-xl p-4">
             <h3 className="text-lg font-semibold mb-3 flex items-center">
-              <FaCode className="mr-2" />
+              <category.icon className={`mr-2 ${category.color}`} />
               {category.name}
             </h3>
             <div className="grid grid-cols-2 gap-2">
