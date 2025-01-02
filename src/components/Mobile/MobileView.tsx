@@ -145,8 +145,8 @@ const MobileView: React.FC = () => {
           <div className="relative h-full">
             {/* Widgets Area */}
             {!state.currentApp && (
-              <div className="px-4 py-2 space-y-4 mt-4">
-                <div className="scale-75">
+              <div className="px-4 py-2 space-y-2">
+                <div className="scale-75 -mb-4">
                   <WeatherWidget />
                 </div>
                 <div className="flex justify-center">
@@ -173,28 +173,32 @@ const MobileView: React.FC = () => {
             {/* Apps Grid */}
             {!state.currentApp && (
               <div className="grid grid-cols-4 gap-4 px-4 mt-8">
-                {Object.entries(state.apps).map(([key, app]) => (
-                  <button
-                    key={key}
-                    onClick={() => openApp(key)}
-                    className="flex flex-col items-center"
-                  >
-                    <div
-                      className={`w-14 h-14 rounded-xl flex items-center justify-center text-white shadow-lg bg-gradient-to-br ${app.gradientFrom} ${app.gradientTo} relative overflow-hidden`}
-                      style={{
-                        boxShadow: "0 4px 14px rgba(0, 0, 0, 0.2)",
-                      }}
+                {Object.entries(state.apps)
+                  .filter(
+                    ([key]) => !["github", "linkedin", "resume"].includes(key)
+                  )
+                  .map(([key, app]) => (
+                    <button
+                      key={key}
+                      onClick={() => openApp(key)}
+                      className="flex flex-col items-center"
                     >
-                      <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
-                      <div className="relative z-10">
-                        {React.cloneElement(app.icon, { size: 28 })}
+                      <div
+                        className={`w-14 h-14 rounded-xl flex items-center justify-center text-white shadow-lg bg-gradient-to-br ${app.gradientFrom} ${app.gradientTo} relative overflow-hidden`}
+                        style={{
+                          boxShadow: "0 4px 14px rgba(0, 0, 0, 0.2)",
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
+                        <div className="relative z-10">
+                          {React.cloneElement(app.icon, { size: 28 })}
+                        </div>
                       </div>
-                    </div>
-                    <span className="text-xs mt-1 text-white font-medium">
-                      {app.label}
-                    </span>
-                  </button>
-                ))}
+                      <span className="text-xs mt-1 text-white font-medium">
+                        {app.label}
+                      </span>
+                    </button>
+                  ))}
               </div>
             )}
 
