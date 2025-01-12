@@ -13,7 +13,7 @@ export default {
         "slide-up": "slide-up 0.3s ease-out",
       },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
   },
