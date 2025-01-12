@@ -30,7 +30,7 @@ const GithubWindow: React.FC<GithubWindowProps> = ({ isOpen, onClose }) => {
       <div className="relative h-full">
         {/* GitHub Profile Screenshot */}
         <img 
-          src="https://res.cloudinary.com/dami7wcek/image/upload/v1733766700/linkedin-profile_t2ypna.png" // Add your GitHub profile screenshot here
+          src="https://res.cloudinary.com/dami7wcek/image/upload/v1736683441/Screenshot_2025-01-12_at_12.03.39_sbiial.png" // Add your GitHub profile screenshot here
           alt="GitHub Profile Preview"
           className="w-full h-full object-cover"
         />
