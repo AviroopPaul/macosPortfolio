@@ -12,7 +12,19 @@ const BootScreen = ({ onBootComplete }: { onBootComplete: () => void }) => {
           onBootComplete();
           return 100;
         }
-        return prev + 2;
+
+        // First 50%: Regular increments
+        if (prev < 50) {
+          return prev + 2;
+        }
+
+        // After 50%: Faster staggered loading with larger random increments
+        const randomIncrement =
+          Math.random() < 0.3
+            ? 0 // 30% chance of no progress
+            : Math.random() * 5 + 2; // Random progress between 2 and 7
+
+        return Math.min(prev + randomIncrement, 100);
       });
     }, 100);
 
