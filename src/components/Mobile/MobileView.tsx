@@ -26,6 +26,7 @@ import SettingsApp from "./Apps/SettingsApp";
 
 interface MobileAppState {
   currentApp: string | null;
+  isAnimating: boolean;
   apps: {
     [key: string]: {
       icon: JSX.Element;
@@ -41,6 +42,7 @@ const MobileView: React.FC = () => {
   const [time, setTime] = useState(new Date());
   const [state, setState] = useState<MobileAppState>({
     currentApp: null,
+    isAnimating: false,
     apps: {
       skills: {
         icon: <FaCode size={30} />,
@@ -107,11 +109,23 @@ const MobileView: React.FC = () => {
   }, []);
 
   const openApp = (appKey: string) => {
-    setState((prev) => ({ ...prev, currentApp: appKey }));
+    setState((prev) => ({ ...prev, isAnimating: true }));
+    requestAnimationFrame(() => {
+      setState((prev) => ({ ...prev, currentApp: appKey }));
+      setTimeout(() => {
+        setState((prev) => ({ ...prev, isAnimating: false }));
+      }, 400);
+    });
   };
 
   const closeApp = () => {
-    setState((prev) => ({ ...prev, currentApp: null }));
+    setState((prev) => ({ ...prev, isAnimating: true }));
+    setTimeout(() => {
+      setState((prev) => ({ ...prev, currentApp: null }));
+      setTimeout(() => {
+        setState((prev) => ({ ...prev, isAnimating: false }));
+      }, 50);
+    }, 300);
   };
 
   return (
@@ -134,27 +148,18 @@ const MobileView: React.FC = () => {
             <MobileMenuBar isAppOpen={state.currentApp !== null} />
           </div>
 
-          {/* App Header with Back Button */}
-          {state.currentApp && (
-            <div className="relative flex items-center px-4 bg-black backdrop-blur-sm pt-8 z-10 pb-4">
-              <button
-                onClick={closeApp}
-                className="flex items-center text-white"
-              >
-                <FaChevronLeft className="text-lg" />
-              </button>
-              <h1 className="flex-1 text-center font-semibold text-white text-xl">
-                {state.apps[state.currentApp].label}
-              </h1>
-            </div>
-          )}
-
-          {/* Content Area */}
-          <div className="relative h-full">
+          {/* Home Screen Content */}
+          <div
+            className={`absolute inset-0 transition-transform duration-300 ease-out ${
+              state.currentApp
+                ? "transform scale-95 opacity-0 pointer-events-none"
+                : "transform scale-100 opacity-100"
+            }`}
+          >
             {/* Widgets Area */}
             {!state.currentApp && (
               <div className="px-4 py-2 space-y-2">
-                <div className="scale-75 -mb-4">
+                <div className="scale-75 -mb-4 mt-6">
                   <WeatherWidget />
                 </div>
                 <div className="flex justify-center">
@@ -212,14 +217,40 @@ const MobileView: React.FC = () => {
                   ))}
               </div>
             )}
+          </div>
 
-            {/* App Content */}
+          {/* App Screen */}
+          <div
+            className={`absolute inset-0 transition-all duration-300 ease-out ${
+              !state.currentApp ? "pointer-events-none" : ""
+            }`}
+            style={{
+              opacity: state.currentApp ? 1 : 0,
+              transform: state.currentApp ? "scale(1)" : "scale(1.05)",
+            }}
+          >
             {state.currentApp && (
-              <div className="h-[calc(100%-120px)] overflow-y-auto">
-                {React.createElement(state.apps[state.currentApp].component, {
-                  isOpen: true,
-                  onClose: closeApp,
-                })}
+              <div className="flex flex-col mt-8">
+                {/* App Header */}
+                <div className="relative flex items-center px-4 bg-black backdrop-blur-sm h-14 z-10">
+                  <button
+                    onClick={closeApp}
+                    className="flex items-center text-white"
+                  >
+                    <FaChevronLeft className="text-lg" />
+                  </button>
+                  <h1 className="flex-1 text-center font-semibold text-white text-xl">
+                    {state.apps[state.currentApp].label}
+                  </h1>
+                </div>
+
+                {/* App Content */}
+                <div className="flex-1 overflow-y-auto">
+                  {React.createElement(state.apps[state.currentApp].component, {
+                    isOpen: true,
+                    onClose: closeApp,
+                  })}
+                </div>
               </div>
             )}
           </div>
