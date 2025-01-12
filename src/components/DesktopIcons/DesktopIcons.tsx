@@ -7,6 +7,7 @@ import {
   FaTerminal,
   FaEnvelope,
 } from "react-icons/fa";
+import { SiSafari } from "react-icons/si";
 import DesktopIcon from "./DesktopIcon";
 import { iconColors } from "../../utils/colors";
 
@@ -52,6 +53,12 @@ const DesktopIcons: React.FC<DesktopIconsProps> = ({ onIconClick }) => {
         label="Contact"
         color={iconColors.desktop.contact}
         onClick={() => onIconClick("contact")}
+      />
+      <DesktopIcon
+        icon={<SiSafari size={48} />}
+        label="Safari"
+        color={iconColors.desktop.safari || "#0FB5EE"}
+        onClick={() => onIconClick("safari")}
       />
     </div>
   );

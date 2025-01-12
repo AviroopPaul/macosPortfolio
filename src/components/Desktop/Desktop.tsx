@@ -12,7 +12,12 @@ import ResumeWindow from "../Windows/ResumeWindow";
 import EducationWindow from "../Windows/EducationWindow";
 import TerminalWindow from "../Windows/TerminalWindow";
 import WelcomeWindow from "../Windows/WelcomeWindow";
-import { ClockWidget, WeatherWidget, CalendarWidget } from "../Widgets/SystemWidgets";
+import {
+  ClockWidget,
+  WeatherWidget,
+  CalendarWidget,
+} from "../Widgets/SystemWidgets";
+import SafariWindow from "../Windows/SafariWindow";
 
 const Desktop = () => {
   const [openWindows, setOpenWindows] = useState({
@@ -26,6 +31,7 @@ const Desktop = () => {
     resume: false,
     education: false,
     terminal: false,
+    safari: false,
   });
 
   const toggleWindow = (window: keyof typeof openWindows) => {
@@ -102,6 +108,10 @@ const Desktop = () => {
           <TerminalWindow
             isOpen={openWindows.terminal}
             onClose={() => toggleWindow("terminal")}
+          />
+          <SafariWindow
+            isOpen={openWindows.safari}
+            onClose={() => toggleWindow("safari")}
           />
         </div>
 
