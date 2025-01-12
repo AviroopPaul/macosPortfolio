@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Dock from "../Dock/Dock";
 import MenuBar from "../MenuBar/MenuBar";
 import DesktopIcons from "../DesktopIcons/DesktopIcons";
@@ -44,7 +44,7 @@ const Desktop = () => {
   return (
     <div className="relative h-screen overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-black"
+        className="absolute inset-0 bg-cover bg-center bg-black z-0"
         style={{
           backgroundImage:
             'url("https://preview.redd.it/modified-the-m3-mac-wallpaper-and-thought-it-looked-good-v0-powq8jb5j5bc1.jpeg?auto=webp&s=66231a10e81f3061e1cd6f1807238fdfcd6569a3")',

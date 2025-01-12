@@ -8,6 +8,7 @@ import {
   FaBuilding,
   FaImage,
   FaTerminal,
+  FaSafari,
 } from "react-icons/fa";
 import DockItem from "./DockItem";
 import { iconColors } from "../../utils/colors";
@@ -43,6 +44,13 @@ const Dock: React.FC<DockProps> = ({ onItemClick }) => {
           label="Experience"
           color={iconColors.experience}
           onClick={() => onItemClick("experience")}
+        />
+        <DockItem
+          className="dock-item"
+          icon={<FaSafari size={40} />}
+          label="Safari"
+          color={iconColors.desktop.safari}
+          onClick={() => onItemClick("safari")}
         />
         <DockItem
           className="dock-item"
